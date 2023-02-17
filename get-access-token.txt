@@ -1,0 +1,44 @@
+// curl POST request example:
+
+curl 'https://api-m.sandbox.paypal.com/v1/oauth2/token' \
+  -H 'authority: api-m.sandbox.paypal.com' \
+  -H 'accept: */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'authorization: Basic QWNMMUVmTE5kYWRQOVM4ZTIwUnhjUndVMTBpUEIwdGEwRHdiLUUtMXEweGNxV0xwZGRUUXh3YkZvSTJKQzN0TEcyU0txV0haTHVvZ3BQUUo6RU5tSTlBN29pMUU2TmlxN0ZxMGxqcE5CZkZVMGFiM2s5ME0yMUV0YlhISURYd2xZdDRJSDJtUHhHSkRndE54R2NmUlR3Y250c1JLblo3SnQ=' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/x-www-form-urlencoded;charset=UTF-8' \
+  -H 'origin: https://example.com' \
+  -H 'pragma: no-cache' \
+  -H 'referer: https://example.com/' \
+  -H 'sec-ch-ua: "Not_A Brand";v="99", "Microsoft Edge";v="109", "Chromium";v="109"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: cross-site' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.78' \
+  --data-raw 'grant_type=authorization_code&code=C21AAJYx_jzuecaTWbnUsQQxRbj7JLrpblGhgr2UQzXphMvUw9WVefhM68c4S3SpxZsCmaV9eAWYNrM_ael5AixFAOd63-IUQ' \
+  --compressed
+
+
+// JavaScript code for POST request :
+
+fetch("https://api-m.sandbox.paypal.com/v1/oauth2/token", {
+    method: 'POST',
+    headers: new Headers({
+      'Authorization': 'Basic ' + btoa(`client-id:secret`) // replace the client_id and secret with your own credentials
+    }),
+    body: new URLSearchParams({
+      'grant_type': 'authorization_code', //dont change this value
+      'code': "authorization-code-copied-from-query-params", //paste the authorization code here
+    }),
+  }).then((tokenResponse)=>{
+      if(tokenResponse.ok){
+        return tokenResponse.json();
+      } else {
+        // show error message
+        this.paypalErrorMsg = true;
+      }
+    }).then((tokenResponse)=>{
+      console.log(tokenResponse["access_token"]);
+    });

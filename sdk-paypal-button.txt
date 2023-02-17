@@ -1,0 +1,29 @@
+// add window to access the javascript SDK given in the index.html
+public windowRef1: any = window;
+
+
+//modify the javascript
+this.windowRef1.paypal.use( ['login'], function (login) {
+	  login.render ({
+    "appid":"Adq87eM_VE2iZYPRWAsy6XjrajrY21dUKz9Pjp5ckD9sdYp",
+    "authend":"sandbox",
+    "scopes":"email profile",
+    "containerid":"lippButton",
+    "responseType":"code",
+    "locale":"en-us",
+    "buttonType":"LWP",
+    "buttonShape":"pill",
+    "buttonSize":"lg",
+    "fullPage":"true",
+    "returnurl":"www.example.com/signup"
+  });
+});
+
+
+// add to component html page
+<span id='lippButton'></span>
+
+
+// add to index.html
+<script src='https://www.paypalobjects.com/js/external/api.js'></script>
+

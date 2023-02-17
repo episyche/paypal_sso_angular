@@ -1,0 +1,59 @@
+// curl GET request:
+
+curl 'https://api-m.sandbox.paypal.com/v1/identity/oauth2/userinfo?schema=paypalv1.1' \
+    -H 'authority: api-m.sandbox.paypal.com' \
+    -H 'accept: */*' \
+    -H 'accept-language: en-US,en;q=0.9' \
+    -H 'authorization: Bearer A23AAKkSCuPgOUxtE68-lZCfWP_xFBqZomyX0gUtEioE5-ultWx5bQ' \
+    -H 'cache-control: no-cache' \
+    -H 'content-type: application/json' \
+    -H 'origin: https://example.com' \
+    -H 'pragma: no-cache' \
+    -H 'referer: https://example.com/' \
+    -H 'sec-ch-ua: "Not_A Brand";v="99", "Microsoft Edge";v="109", "Chromium";v="109"' \
+    -H 'sec-ch-ua-mobile: ?0' \
+    -H 'sec-ch-ua-platform: "Linux"' \
+    -H 'sec-fetch-dest: empty' \
+    -H 'sec-fetch-mode: cors' \
+    -H 'sec-fetch-site: cross-site' \
+    -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.78' \
+    --compressed
+
+
+// JavaScript code to get user profile info
+fetch("https://api-m.sandbox.paypal.com/v1/identity/oauth2/userinfo?schema=paypalv1.1", {
+      method: "GET",
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization": `Bearer ${tokenData["access_token"]}`,
+      }
+    }).then((userProfileResponse)=>{
+        if(userProfileResponse.ok){
+          return userProfileResponse.json();
+        } else {
+          // show error message
+          this.paypalErrorMsg = true;
+        }
+      }).then((userProfileResponse)=>{
+        console.log(userProfileResponse);
+      });
+
+
+
+// user profile response message
+fetch("https://api-m.sandbox.paypal.com/v1/identity/oauth2/userinfo?schema=paypalv1.1", {
+      method: "GET",
+      headers: {
+        "Content-Type":"application/json",
+        "Authorization": `Bearer ${tokenData["access_token"]}`,
+      }
+    }).then((userProfileResponse)=>{
+        if(userProfileResponse.ok){
+          return userProfileResponse.json();
+        } else {
+          // show error message
+          this.paypalErrorMsg = true;
+        }
+      }).then((userProfileResponse)=>{
+        console.log(userProfileResponse);
+      });
